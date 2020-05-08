@@ -1,0 +1,60 @@
+<div class="content" role="main">
+  <div class="detalhes-container" *ngFor="let produto of produtos">
+    <div class="columns c1" target="_blank" rel="noopener">
+      <div class="product">
+        <ul class="product-list">
+            <li class="product-item" >
+              <strong>Área para Imagem</strong>
+            </li>
+            <li class="product-item">
+              <span> </span>
+            </li>
+        </ul>
+      </div>
+    </div>
+    <div class="columns c2" target="_blank" rel="noopener">
+      <div class="product">
+        <ul class="product-list">
+            <li class="product-item" >
+              <h3>{{produto.nome}}</h3>
+            </li>
+            <li class="product-item" >
+              <p>Código {{produto.id}}</p>
+            </li>
+        </ul>
+      </div>
+    </div>
+    <div class="columns c3" target="_blank" rel="noopener" >
+      <div class="product">
+        <ul class="product-list">
+          <li class="product-item" *ngIf="produto.compras" >
+            <h4>Total R$ {{formatPreco(produto.compras)}}</h4>
+          </li>
+          <li class="product-item" >
+            <span>Em Estoque {{produto.estoque}}</span>
+          </li>
+          <li class="product-item" >
+              <button class="action add" *ngIf="!produto.qtde" (click)="addItem(produto)">+Adicionar Itens</button>
+                <button *ngIf="produto.qtde && produto.estoque > produto.qtde" class="action inc" (click)="increment(produto)">+</button>
+                <span *ngIf="produto.qtde">{{produto.qtde}}</span>
+              <button *ngIf="produto.qtde" class="action dec" (click)="decrement(produto)">-</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="columns c4" target="_blank" rel="noopener">
+      <div class="product">
+        <ul class="product-list">
+          <li class="product-item alert red" *ngIf="produto.qtde < 10">
+            <h4>Aviso: Comprar abaixo de 10 itens não tem desconto.</h4>
+          </li>
+          <li class="product-item alert green" *ngIf="produto.qtde >= 10">
+            <h4>Seu desconto aparecerá no checkout.</h4>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+

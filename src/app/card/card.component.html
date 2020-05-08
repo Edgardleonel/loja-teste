@@ -1,0 +1,20 @@
+<div class="card" target="_blank" rel="noopener" *ngFor="let produto of produtos">
+  <div class="product">
+    <ul class="product-list">
+        <li class="product-item" >
+          <strong>{{produto.nome}}</strong>
+        </li>
+        <li class="product-item">
+          <span> R$ {{formatPreco(produto.preco)}}</span>
+        </li>
+    </ul>
+    <div class="product-actions" *ngIf="logar">
+      <button class="action" *ngIf="!produto.qtde" (click)="addItem(produto)">+Adicionar Itens</button>
+        <button *ngIf="produto.qtde && produto.estoque > produto.qtde" class="action inc" (click)="increment(produto)">+</button>
+        <span *ngIf="produto.qtde">{{produto.qtde}}</span>
+        <button *ngIf="produto.qtde" class="action dec" (click)="decrement(produto)">-</button>
+      <button class="action" (click)="open(produto)">Ver Mais</button>
+    </div>
+  </div>
+</div>
+

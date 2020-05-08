@@ -1,0 +1,46 @@
+<div class="sidebar" role="banner">
+  <div class="header">
+    <h1>Loja Teste</h1>
+    <div class="nav">
+      <ul class="nav-list">
+          <li class="nav-item">
+              <a class="link" routerLink="/">Produtos</a>
+          </li>
+          <li class="nav-item" *ngIf="on">
+            <a class="link" routerLink="/carrinho">Carrinho<span *ngIf="count" class="badge">{{count}}</span></a>
+          </li>
+          <li class="nav-item" *ngIf="off">
+              <button class="login" (click)="enter()">Entrar</button>
+          </li>
+          <li class="nav-item" *ngIf="on">
+            <button class="login" (click)="logout()">Sair</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="modal" *ngIf="modal">
+  <div class="modal-overlay">
+    <div class="modal-container">
+      <h2>Faça o Login</h2>
+      <form [formGroup]="form" (ngSubmit)="login()">
+        <div class="field">
+          <label>Email</label>
+          <input email formControlName="email" type="email" placeholder="Digite seu email" >
+        </div>
+        <div class="field">
+          <label>Senha</label>
+          <input formControlName="senha" type="password" placeholder="Digite sua senha" >
+        </div>
+        <div class="button-modal">
+          <button class="logar" [disabled]="!form.valid" type="submit">Logar</button>
+          <button class="logar cancel" (click)="cancel()">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="loading" *ngIf="loader">
+  <div class="loader"></div>
+</div>
