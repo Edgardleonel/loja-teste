@@ -22,12 +22,16 @@ constructor() {
 recuperar() {
   const recuperar = localStorage.getItem('compras');
   const recuperarCompras = JSON.parse(recuperar);
-  const uid = recuperarCompras[0].uid;
-  console.log('recuperar uid', uid);
-  const auth = localStorage.getItem('auth');
-  if (uid === auth) {
-  this.listProduct = recuperarCompras;
-  this.saveCart();
+  if (recuperarCompras) {
+    const uid = recuperarCompras[0].uid;
+    console.log('recuperar uid', uid);
+    const auth = localStorage.getItem('auth');
+    if (uid === auth) {
+    this.listProduct = recuperarCompras;
+    this.saveCart();
+    } else {
+      this.listProduct = [];
+    }
   } else {
     this.listProduct = [];
   }
