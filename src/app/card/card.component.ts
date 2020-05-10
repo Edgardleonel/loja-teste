@@ -15,7 +15,6 @@ export class CardComponent implements OnInit {
   public produto;
   public produtos;
   public result;
-  public modal: boolean;
   public logar: boolean;
 
   constructor(
