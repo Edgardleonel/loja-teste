@@ -1,9 +1,9 @@
+import { Produto } from './../interface/produto';
 import { AuthProvider } from './../services/auth';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { produtos } from '../database/produtos';
 import { CartService } from '../services/cart-service';
-
 
 
 @Component({
@@ -24,11 +24,30 @@ export class CardComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.produtos = produtos;
+    this.recuperar();
     const count = this.cartService.listProduct.length;
     this.cartService.emitirCout(count);
     this.isAuth();
   }
+
+  recuperar() {
+    const recuperarProdutos = this.cartService.listProduct.concat(produtos);
+    const valid = [];
+    const unique = recuperarProdutos.filter(function(produto: Produto) {
+    if (valid.hasOwnProperty(produto.id)) {
+        return false;
+    } else {
+        valid[produto.id] = true;
+        return true;
+      }
+    });
+    this.produtos = unique;
+    this.produtos.sort(function (a, b) {
+      return (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0);
+    });
+    console.log(this.produtos);
+  }
+
 
   async isAuth() {
     const user = await this.auth.authState();

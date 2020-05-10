@@ -16,7 +16,12 @@ export class CarrinhoComponent implements OnInit {
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.cartService.saveCart();
     this.produtos = this.cartService.listProduct;
+    this.produtos.sort(function (a, b) {
+      return (a.id > b.id) ? 1 : ((b.id > a.id) ? -1 : 0);
+    });
+
     this.compras = this.cartService.compras;
   }
 

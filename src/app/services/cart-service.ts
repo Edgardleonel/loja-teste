@@ -2,7 +2,6 @@ import { Produto } from './../interface/produto';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
-
 @Injectable()
 export class CartService {
 
@@ -22,23 +21,30 @@ constructor() {
 recuperar() {
   const recuperar = localStorage.getItem('compras');
   const recuperarCompras = JSON.parse(recuperar);
-  const uid = recuperarCompras[0].uid;
-  console.log('recuperar uid', uid);
-  const auth = localStorage.getItem('auth');
-  if (uid === auth) {
-  this.listProduct = recuperarCompras;
-  this.saveCart();
+  if (recuperarCompras) {
+    const uid = recuperarCompras[0].uid;
+    console.log('recuperar uid', uid);
+    const auth = localStorage.getItem('auth');
+    if (uid === auth) {
+    this.listProduct = recuperarCompras;
+    } else {
+      this.listProduct = [];
+    }
   } else {
     this.listProduct = [];
   }
 }
 
  saveCart() {
-  this.listProduct = this.listProduct.filter((item, index) =>
-  this.listProduct.indexOf(item) === index );
-
-  this.listProduct = this.listProduct.filter((produto: Produto ) =>
-  produto.qtde !== 0 );
+  const valid = {};
+  this.listProduct = this.listProduct.filter(function(produto: Produto) {
+  if (valid.hasOwnProperty(produto.id)) {
+      return false;
+  } else {
+      valid[produto.id] = true;
+      return true;
+    }
+  });
 
   console.log('adicionado no carrinho', this.listProduct);
 
