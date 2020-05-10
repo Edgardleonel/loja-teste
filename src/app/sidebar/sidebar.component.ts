@@ -26,7 +26,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.buidForm();
-    this.cartService.getCart().subscribe(res => console.log('resultado service', this.count = res));
+    this.cartService.getCart().subscribe(res => console.log('resultado count', this.count = res));
     this.isAuth();
   }
 
@@ -72,6 +72,9 @@ export class SidebarComponent implements OnInit {
   }
 
   public logout() {
+    if (this.cartService.listProduct.length === 0 ) {
+      localStorage.removeItem('compras');
+    }
     this.auth.logout();
     localStorage.removeItem('auth');
     this.loader = true;

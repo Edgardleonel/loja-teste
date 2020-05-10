@@ -54,7 +54,9 @@ recuperar() {
   produto.uid = user);
   console.log('user', this.user);
 
+  if (this.listProduct.length > 0) {
   localStorage.setItem('compras', JSON.stringify(this.listProduct));
+  }
 
   this.compras = this.listProduct.map((produto: Produto) =>
   produto.compras = produto.qtde * produto.preco );
@@ -66,13 +68,11 @@ recuperar() {
   console.log('total de compras', this.total);
   }
 
-
- emitirCout(count) {
-  this.subject$.next(count);
- }
+  emitirCout(count) {
+    this.subject$.next(count);
+  }
 
   getCart() {
     return this.subject$.asObservable();
   }
-
 }

@@ -28,7 +28,7 @@ import { environment } from '../environments/environment';
     DetalhesComponent,
     CarrinhoComponent,
     CardComponent,
-    SidebarComponent
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

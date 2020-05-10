@@ -15,6 +15,7 @@ export class CardComponent implements OnInit {
   public produto;
   public produtos;
   public result;
+  public modal: boolean;
   public logar: boolean;
 
   constructor(
@@ -88,4 +89,5 @@ export class CardComponent implements OnInit {
     this.cartService.selectedProduct = produto;
     this.router.navigateByUrl('/detalhes');
   }
+
 }
