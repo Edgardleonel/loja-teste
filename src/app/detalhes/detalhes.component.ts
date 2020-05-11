@@ -28,11 +28,15 @@ export class DetalhesComponent implements OnInit {
     this.produto.qtde = 1;
     this.cartService.listProduct.push(this.produto);
     this.compras = this.produto.qtde * this.produto.preco;
+    const count = this.cartService.listProduct.length;
+    this.cartService.emitirCout(count);
   }
 
   public increment() {
     this.produto.qtde++;
     this.compras = this.produto.qtde * this.produto.preco;
+    const count = this.cartService.listProduct.length;
+    this.cartService.emitirCout(count);
   }
 
   public decrement() {
@@ -42,5 +46,7 @@ export class DetalhesComponent implements OnInit {
       this.cartService.listProduct.splice(index, 1);
     }
     this.compras = this.produto.qtde * this.produto.preco;
+    const count = this.cartService.listProduct.length;
+    this.cartService.emitirCout(count);
   }
 }
