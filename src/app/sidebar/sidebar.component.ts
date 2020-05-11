@@ -1,6 +1,5 @@
 import { CartService } from './../services/cart-service';
-import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { AuthProvider } from '../services/auth';
 
 
@@ -11,21 +10,19 @@ import { AuthProvider } from '../services/auth';
 })
 export class SidebarComponent implements OnInit {
 
+  @Input() modal;
+  @Output() mudouModal = new EventEmitter();
   public count;
-  public modal: boolean;
   public loader: boolean;
-  public form: FormGroup;
   public on: boolean = false;
   public off: boolean = true;
 
   constructor(
     private cartService: CartService,
-    private formBuilder: FormBuilder,
     private auth: AuthProvider,
   ) { }
 
   ngOnInit() {
-    this.buidForm();
     this.cartService.getCart().subscribe(res => console.log('resultado count', this.count = res));
     this.isAuth();
   }
@@ -41,44 +38,22 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  buidForm() {
-    this.form = this.formBuilder.group({
-      email: ['', Validators.required],
-      senha: ['', Validators.required]
-    });
-  }
-
-  public login() {
-    const data = this.form.value;
-    this.auth.login(data)
-      .then((res) => {
-      localStorage.setItem('auth', res.user.uid);
-      this.modal = false;
-      this.loader = true;
-      location.reload();
-      }).catch((err) => {
-        alert('Senha incorreta ou usuário não está cadastrado!');
-      });
-    this.loader = false;
-    this.form.reset();
-  }
-
   public enter() {
-    this.modal = true;
-  }
-
-  public cancel() {
-    this.modal = false;
+    this.mudouModal.emit(this.modal = true);
+    console.log(this.mudouModal.emit(this.modal = true));
   }
 
   public logout() {
     if (this.cartService.listProduct.length === 0 ) {
       localStorage.removeItem('compras');
+    } else {
+      const update = this.cartService.listProduct;
+      localStorage.setItem('compras', JSON.stringify(update));
     }
     this.auth.logout();
     localStorage.removeItem('auth');
     this.loader = true;
-    location.reload();
+    setTimeout(() => location.reload(), 1000);
   }
 
 }

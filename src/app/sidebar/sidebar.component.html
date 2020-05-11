@@ -19,28 +19,7 @@
     </div>
   </div>
 </div>
-<div class="modal" *ngIf="modal">
-  <div class="modal-overlay">
-    <div class="modal-container">
-      <h2>Faça o Login</h2>
-      <form [formGroup]="form" (ngSubmit)="login()">
-        <div class="field">
-          <label>Email</label>
-          <input email formControlName="email" type="email" placeholder="Digite seu email" >
-        </div>
-        <div class="field">
-          <label>Senha</label>
-          <input formControlName="senha" type="password" placeholder="Digite sua senha" >
-        </div>
-        <div class="button-modal">
-          <button class="logar" [disabled]="!form.valid" type="submit">Logar</button>
-          <button class="logar cancel" (click)="cancel()">Cancelar</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
+<app-modal [modal]="modal"></app-modal>
 <div class="loading" *ngIf="loader">
   <div class="loader"></div>
 </div>

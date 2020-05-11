@@ -1,4 +1,4 @@
-<div class="card" target="_blank" rel="noopener" *ngFor="let produto of produtos">
+<div class="card" target="_blank" rel="noopener"  (click)="openModal()" *ngFor="let produto of produtos">
   <div class="product">
     <ul class="product-list">
         <li class="product-item" >
@@ -17,4 +17,5 @@
     </div>
   </div>
 </div>
+<app-modal [modal]="modal"></app-modal>
 

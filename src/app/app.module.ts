@@ -10,6 +10,7 @@ import { DetalhesComponent } from './detalhes/detalhes.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
 import { CardComponent } from './card/card.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ModalComponent } from './modal/modal.component';
 
 import { CartService } from './services/cart-service';
 import { AuthProvider } from './services/auth';
@@ -21,6 +22,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,7 @@ import { environment } from '../environments/environment';
     CarrinhoComponent,
     CardComponent,
     SidebarComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

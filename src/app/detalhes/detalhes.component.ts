@@ -1,7 +1,6 @@
 import { CartService } from './../services/cart-service';
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-detalhes',
   templateUrl: './detalhes.component.html',

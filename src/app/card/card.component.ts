@@ -1,10 +1,9 @@
 import { Produto } from './../interface/produto';
 import { AuthProvider } from './../services/auth';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { produtos } from '../database/produtos';
 import { CartService } from '../services/cart-service';
-
 
 @Component({
   selector: 'app-card',
@@ -14,8 +13,10 @@ import { CartService } from '../services/cart-service';
 export class CardComponent implements OnInit {
   public produto;
   public produtos;
-  public result;
+  public count;
   public logar: boolean;
+  @Input() modal;
+  @Output() mudouModal = new EventEmitter();
 
   constructor(
     private cartService: CartService,
@@ -25,9 +26,18 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
     this.recuperar();
+    this.cartService.getCart().subscribe(res => console.log('resultado service', this.count = res));
     const count = this.cartService.listProduct.length;
     this.cartService.emitirCout(count);
     this.isAuth();
+  }
+
+  openModal() {
+    if (this.logar === false) {
+      this.mudouModal.emit(this.modal = true);
+      console.log(this.mudouModal.emit(this.modal = true));
+    }
+
   }
 
   recuperar() {
