@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthProvider } from '../services/auth';
-import { setInterval } from 'timers';
 
 
 @Component({
