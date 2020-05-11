@@ -68,7 +68,7 @@ export class CardComponent implements OnInit {
     }
   }
 
-  public formatPreco = preco => parseFloat(preco).toFixed(2).replace('.' , ',');
+  public formatPreco = preco => preco.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
 
   public addItem(produto) {
   produto.qtde = 1;

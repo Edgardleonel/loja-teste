@@ -33,10 +33,10 @@
       <div class="product">
         <ul class="product-list">
           <li class="product-item" >
-            <h3>Comprar por R$ {{formatPreco(produto.preco)}}</h3>
+            <h3>Comprar por {{formatPreco(produto.preco)}}</h3>
           </li>
           <li class="product-item" *ngIf="compras > 0">
-            <h4>Total R$ {{formatPreco(compras)}}</h4>
+            <h4>Total {{formatPreco(compras)}}</h4>
           </li>
           <li class="product-item" >
             <span>Em Estoque {{produto.estoque}}</span>

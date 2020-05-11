@@ -27,7 +27,7 @@ export class CarrinhoComponent implements OnInit {
     this.compras = this.cartService.compras;
   }
 
-  public formatPreco = preco => parseFloat(preco).toFixed(2).replace('.' , ',');
+  public formatPreco = preco => preco.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
 
   public addItem(produto) {
     produto.qtde = 1;

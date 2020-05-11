@@ -22,7 +22,7 @@ export class DetalhesComponent implements OnInit {
     this.produto = this.cartService.selectedProduct;
     this.compras = this.produto.qtde * this.produto.preco;
   }
-  public formatPreco = preco => parseFloat(preco).toFixed(2).replace('.' , ',');
+  public formatPreco = preco => preco.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'});
 
   public addItem() {
     this.produto.qtde = 1;
